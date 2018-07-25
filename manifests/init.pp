@@ -19,7 +19,8 @@ class tunneldigger(
   $session_pre_down='',
   $session_down='',
   $session_mtu_changed='',
-  $bridge_address='10.254.0.2/16'
+  $bridge_address='10.254.0.2/16',
+  $upstart='0'
 ) {
 
   package { [
@@ -110,6 +111,18 @@ class tunneldigger(
     require   => Exec['setup'],
   }
 
+  if $upstart == '1' {
+    file { '/etc/init/tunneldigger.conf':
+      ensure    => file,
+      content   => template('tunneldigger/tunneldigger.upstart.erb'),
+      require   => Exec['setup'],
+      notify    => Service['tunneldigger'],
+    }
+  }
 
+  service { "tunneldigger":
+    ensure      => 'running',
+    enable      => 'true',
+  }
 
 }

@@ -1,0 +1,9 @@
+description "tunneldigger tunnelling network daemon using l2tpv3"
+
+start on runlevel [2345]
+stop on runlevel [!2345]
+
+respawn
+
+chdir <%= @install_dir %>
+exec <%= @virtualenv %>/bin/python -m broker.main <%= @install_dir %>/broker/l2tp_broker.cfg
