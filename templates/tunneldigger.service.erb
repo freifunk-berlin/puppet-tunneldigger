@@ -5,7 +5,7 @@ After=network.target auditd.service
 [Service]
 Type=simple
 WorkingDirectory=<%= @install_dir %>
-ExecStart=<%= @virtualenv %>/bin/python -m broker.main <%= @install_dir %>/broker/l2tp_broker.cfg
+ExecStart=<%= @virtualenv %>/bin/python -m tunneldigger_broker.main <%= @install_dir %>/broker/l2tp_broker.cfg
 KillMode=process
 Restart=on-failure
 

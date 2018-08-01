@@ -20,7 +20,7 @@ class tunneldigger(
   $session_down='',
   $session_mtu_changed='',
   $bridge_address='10.254.0.2/16',
-  $upstart='0'
+  $systemd='0'
 ) {
 
   package { [
@@ -111,10 +111,10 @@ class tunneldigger(
     require   => Exec['setup'],
   }
 
-  if $upstart == '1' {
-    file { '/etc/init/tunneldigger.conf':
+  if $systemd == '1' {
+    file { '/lib/systemd/system/tunneldigger.conf':
       ensure    => file,
-      content   => template('tunneldigger/tunneldigger.upstart.erb'),
+      content   => template('tunneldigger/tunneldigger.service.erb'),
       require   => Exec['setup'],
       notify    => Service['tunneldigger'],
     }
