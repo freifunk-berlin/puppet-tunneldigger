@@ -43,14 +43,14 @@ log_ip_addresses=<%= @log_ip_addresses %>
 ;
 
 ; Called after the tunnel interface goes up
-session.up=<% if @session_up != '' %>scripts/<% end %><%= @session_up %>
+session.up=<% if @session_up != '' %><%= @install_dir %>/broker/scripts/<%= @session_up %><% end %>
 ; Called just before the tunnel interface goes down
 ; (However, due to hooks being asynchonous, the hook may actually execute after the interface was
 ; already removed.)
-session.pre-down=<% if @session_pre_down != '' %>scripts/<% end %><%= @session_pre_down %>
+session.pre-down=<% if @session_pre_down != '' %><%= @install_dir %>/broker/scripts/<%= @session_pre_down %><% end %>
 ; Called after the tunnel interface goes down
-session.down=<% if @session_down != '' %>scripts/<% end %><%= @session_down %>
+session.down=<% if @session_down != '' %><%= @install_dir %>/broker/scripts/<%= @session_down %><% end %>
 ; Called after the tunnel MTU gets changed because of PMTU discovery
-session.mtu-changed=<% if @session_mtu_changed != '' %>scripts/<% end %><%= @session_mtu_changed %>
+session.mtu-changed=<% if @session_mtu_changed != '' %><%= @install_dir %>/broker/scripts/<%= @session_mtu_changed %><% end %>
 
 
