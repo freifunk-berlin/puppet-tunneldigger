@@ -23,6 +23,14 @@ class tunneldigger(
   $systemd='0'
 ) {
 
+  class { 'python':
+    version    => 'system',
+    pip        => 'present',
+    dev        => 'present',
+    virtualenv => 'present',
+    gunicorn   => 'absent',
+  }
+
   package { [
     'iproute',
     'bridge-utils',
@@ -112,7 +120,7 @@ class tunneldigger(
   }
 
   if $systemd == '1' {
-    file { '/lib/systemd/system/tunneldigger.conf':
+    file { '/etc/systemd/system/tunneldigger.service':
       ensure    => file,
       content   => template('tunneldigger/tunneldigger.service.erb'),
       require   => Exec['setup'],
