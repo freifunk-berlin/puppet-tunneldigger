@@ -133,4 +133,10 @@ class tunneldigger(
     enable      => 'true',
   }
 
+  file { '/etc/modules-load.d/tunneldigger.conf':
+    ensure      => file,
+    content     => template('tunneldigger/modules.conf.erb'),
+    require     => Exec['setup'],
+  }
+
 }
