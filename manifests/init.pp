@@ -93,6 +93,7 @@ class tunneldigger(
     file { "${scripts}/${session_pre_down}":
       ensure    => file,
       content   => template("${templates_dir}/${session_pre_down}.erb"),
+      mode      => '744',
       require   => Exec['setup'],
     }
   }
@@ -101,6 +102,7 @@ class tunneldigger(
     file { "${scripts}/${session_down}":
       ensure    => file,
       content   => template("${templates_dir}/${session_down}.erb"),
+      mode      => '744',
       require   => Exec['setup'],
     }
   }
@@ -109,6 +111,7 @@ class tunneldigger(
     file { "${scripts}/${session_mtu_changed}":
       ensure    => file,
       content   => template("${templates_dir}/${session_mtu_changed}.erb"),
+      mode      => '744',
       require   => Exec['setup'],
     }
   }
