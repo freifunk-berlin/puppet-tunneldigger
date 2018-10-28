@@ -3,7 +3,7 @@ TUNNEL_ID="$1"
 INTERFACE="$3"
 MTU="$4"
 
-. scripts/bridge_functions.sh
+. <%= @install_dir %>/broker/scripts/<%= @functions %>
 
 # Set the interface to UP state
 ip link set dev $INTERFACE up mtu $MTU

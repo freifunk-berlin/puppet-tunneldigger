@@ -15,7 +15,7 @@ ensure_bridge()
     # TODO The IP address should probably not be hardcoded here?
     ip addr add <%= @bridge_address %> dev $brname
     # TODO Policy routing should probably not be hardcoded here?
-    ensure_policy from all iif $brname lookup mesh prio 1000
+    ensure_policy from all iif $brname lookup <%= namespace %> prio 1000
     # Disable forwarding between bridge ports
     ebtables -A FORWARD --logical-in $brname -j DROP
   fi

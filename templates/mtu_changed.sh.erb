@@ -4,7 +4,7 @@ INTERFACE="$3"
 OLD_MTU="$4"
 NEW_MTU="$5"
 
-. scripts/bridge_functions.sh
+. <%= @install_dir %>/broker/scripts/<%= @functions %>
 
 # Remove interface from old bridge
 brctl delif digger${OLD_MTU} $INTERFACE
